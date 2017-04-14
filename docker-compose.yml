@@ -22,6 +22,8 @@ networks:
         driver: bridge
         driver_opts:
             com.docker.network.enable_ipv4: "true"
+            com.docker.network.bridge.enable_ip_masquerade: "false"
+        internal: true
         ipam:
             driver: default
             config:
