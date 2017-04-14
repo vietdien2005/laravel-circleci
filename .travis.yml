@@ -5,8 +5,6 @@ services:
 os:
 - linux
 before_script:
-- curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ && mv
-  /usr/bin/composer.phar /usr/bin/composer
 - composer create-project --prefer-dist laravel/laravel source/laravel
 - docker --version
 - docker-compose --version
