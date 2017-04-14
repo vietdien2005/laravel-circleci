@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+    laravel_circleci:
+        build: 
+            context: ./build
+        image: vietdien2005/laravel_circleci:latest
+        ports:
+            - "80:80"
+        volumes:
+            - ./source:/var/www/html
+            - ./build/nginx/conf.d:/etc/nginx/conf.d
+            - ./build/nginx/logs:/var/log/nginx
+            - ./build/supervisor/conf.d:/etc/supervisor/conf.d
+            - ./build/supervisor/laravel:/var/log/laravel
+        networks:
+            network_custom:
+                ipv4_address: 172.48.0.2
+
+networks:
+    network_custom:
+        driver: bridge
+        driver_opts:
+            com.docker.network.enable_ipv4: "true"
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.48.0.0/16
+                  gateway: 172.48.0.1
