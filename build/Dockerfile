@@ -39,8 +39,15 @@ RUN apt-get install nginx -y
 RUN	apt-get -y install php5.6-dev php5.6-fpm php5.6-mysqlnd php5.6-curl php5.6-gd php-pear php5.6-imagick php5.6-imap php5.6-mcrypt \
 	php5.6-intl php5.6-pspell php5.6-recode php5.6-snmp php5.6-tidy \
 	php5.6-xmlrpc php5.6-xsl php5.6-xdebug php5.6-redis php5.6-igbinary \
-	php5.6-mbstring php-amqp php5.6-bcmath && \
-	curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ && mv /usr/bin/composer.phar /usr/bin/composer
+	php5.6-mbstring php-amqp php5.6-bcmath
+
+# Install Composer 
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ && mv /usr/bin/composer.phar /usr/bin/composer
+
+# Install Php-cs-fixer
+RUN curl -L http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -o php-cs-fixer && \
+	chmod a+x php-cs-fixer && \
+	mv php-cs-fixer /usr/local/bin/php-cs-fixer 
 
 RUN update-alternatives --set php /usr/bin/php5.6
 
