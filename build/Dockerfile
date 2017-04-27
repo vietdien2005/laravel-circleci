@@ -47,7 +47,17 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ 
 # Install Php-cs-fixer
 RUN curl -L http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -o php-cs-fixer && \
 	chmod a+x php-cs-fixer && \
-	mv php-cs-fixer /usr/local/bin/php-cs-fixer 
+	mv php-cs-fixer /usr/local/bin/php-cs-fixer
+
+# Install Phpcs
+RUN curl -L https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar -o phpcs && \
+	chmod a+x phpcs && \
+	mv phpcs /usr/local/bin/phpcs
+
+# Install Phpcbf
+RUN curl -L https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar -o phpcbf && \
+	chmod a+x phpcbf && \
+	mv phpcbf /usr/local/bin/phpcbf
 
 RUN update-alternatives --set php /usr/bin/php5.6
 
